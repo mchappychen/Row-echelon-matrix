@@ -1,1 +1,1 @@
-# Convert-matrix-into-row-echelon-form
+Converts an N x N matrix into row-echelon form
