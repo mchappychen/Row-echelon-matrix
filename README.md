@@ -1,5 +1,5 @@
 Start with i = 1, j = 1.
-1. If aij = 0 swap the i-th row with some other row below to guarantee that aij 6= 0.
+1. If aij = 0 swap the i-th row with some other row below to guarantee that a_ij = 0.
 The non-zero entry in the (i, j)-position is called a pivot. If all entries in the column
 are zero, increase j by 1.
 2. Divide the i-th row by aij to make the pivot entry = 1.
