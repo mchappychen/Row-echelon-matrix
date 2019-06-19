@@ -1,4 +1,4 @@
-
+Converts a matrix into row-echelon form
 
 ---
 ![https://i.imgur.com/nJhQqEs.gif](https://i.imgur.com/nJhQqEs.gif)
