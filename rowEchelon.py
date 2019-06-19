@@ -34,7 +34,8 @@ def rowEchelon(a):
     """
     i = 0 #1
     j = 0
-    while(j < len(a[0])):
+    while(j < len(a[0]) and i<len(a)):
+        print("(",i,",",j,")")
         operate = True
         if(a[i][j] == 0): #2 If it's 0, switch it with a row below where pivot won't become 0
             switched = False
@@ -61,7 +62,7 @@ def rowEchelon(a):
 
 def checkMatrix(a): #checks if a[] is in correct format
     for x in range(len(a)):
-        for y in range(len(x)):
+        for y in range(len(a[0])):
             try:
                 if(a[x][y] == None):
                     print("Error in checkMatrix(): (",x,",",y,") is empty")
