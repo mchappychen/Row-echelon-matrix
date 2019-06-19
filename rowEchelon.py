@@ -5,7 +5,7 @@ def multiply(a,b): #returns: [] of a x b[]
         exit("Error in multiply(): You can't multiply matrix by 0")
     result = []
     for element in b:
-        result.append(round(element * a,2))
+        result.append(round(element * a,1))
     return result
 
 def add(a,b): #returns [] of a[]+b[]
@@ -13,14 +13,14 @@ def add(a,b): #returns [] of a[]+b[]
     if(len(a) != len(b)):
         exit("Error in add(a,b): length of a[] not equal to length of b[]")
     for i in range(len(a)):
-        result.append(round(a[i]+b[i],2))
+        result.append(round(a[i]+b[i],1))
     return result
 
 def printMatrix(a): #prints a matrix
     for x in a:
         string = "|\t"
         for y in x:
-            string += str(round(y,2)+0)+"\t"
+            string += str(round(y,1)+0)+"\t"
         string += "|"
         print(string)
 
@@ -151,16 +151,16 @@ def main():
                 goodInput = True
             except ValueError:
                 print("Enter a number you idiot, learn to read")
-        for x in range(trials):
+        for x in range(1,trials+1):
             matrix = []
             for y in range(m):
                 row = []
                 for z in range(n):
-                    row.append(round(random.random()*10,2))
+                    row.append(round(random.random()*10,0))
                 matrix.append(row)
             print("Matrix trial ",x," looks like:")
             printMatrix(matrix)
-            print("Row-Echelon Matrix looks like:")
+            print("Row-Echelon Matrix ",x," looks like:")
             printMatrix(rowEchelon(matrix,False))
             print("")
     else:
