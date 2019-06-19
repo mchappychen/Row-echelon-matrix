@@ -1,3 +1,5 @@
+import random
+
 def multiply(a,b): #returns: [] of a x b[]
     if(a == 0):
         exit("Error in multiply(): You can't multiply matrix by 0")
@@ -21,9 +23,8 @@ def printMatrix(a): #prints a matrix
             string += str(round(y,2)+0)+"\t"
         string += "|"
         print(string)
-    print("")
 
-def rowEchelon(a):
+def rowEchelon(a,debug):
     """Plan:
         1. Start with pivot at a[i][j] where i=0 and j=0
         2. If it's 0, switch it with a row below where pivot won't become 0
@@ -35,7 +36,6 @@ def rowEchelon(a):
     i = 0 #1
     j = 0
     while(j < len(a[0]) and i<len(a)):
-        print("(",i,",",j,")")
         operate = True
         if(a[i][j] == 0): #2 If it's 0, switch it with a row below where pivot won't become 0
             switched = False
@@ -45,6 +45,8 @@ def rowEchelon(a):
                     a[x] = a[i].copy()
                     a[i] = temp.copy()
                     switched = True
+                    if(debug):
+                        print("Switched ",i," and ",x)
                     break
             if(not switched):
                 j += 1
@@ -58,6 +60,10 @@ def rowEchelon(a):
                     a[x] = add(multiply(-1 * a[x][j],a[i]),a[x])
             i += 1 #5
             j += 1
+            if(debug):
+                print("i = ",i,", j = ",j)
+                printMatrix(a)
+                print("")
     return a
 
 def checkMatrix(a): #checks if a[] is in correct format
@@ -121,7 +127,7 @@ def main():
                 goodInput = False
                 while(not goodInput):
                     try:
-                        row.append(float(input("Enter number :: ")))
+                        row.append(float(input("Enter number ("+str(x)+","+str(y)+"):: ")))
                         goodInput = True
                     except ValueError:
                         print("Type in a number idiot, learn to read") 
@@ -129,10 +135,33 @@ def main():
         checkMatrix(matrix)
         print("\nMatrix looks like:")
         printMatrix(matrix)
+        print("")
+        matrix = rowEchelon(matrix,True)
         print("Row-Echelon matrix looks like:")
-        printMatrix(rowEchelon(matrix)) #3 Call rowEchelon()
+        printMatrix(matrix) #3 Call rowEchelon()
     elif(userInput == "auto"):
-        pass
+        trials = 0
+        goodInput = False
+        while(not goodInput):
+            try:
+                trials = int(input("Enter number of trials :: "))
+                if(not trials > 0):
+                    print("Enter a positive natural number idiot, use your brain")
+                goodInput = True
+            except ValueError:
+                print("Enter a number you idiot, learn to read")
+        for x in range(trials):
+            matrix = []
+            for y in range(m):
+                row = []
+                for z in range(n):
+                    row.append(round(random.random()*10,2))
+                matrix.append(row)
+            print("Matrix trial ",x," looks like:")
+            printMatrix(matrix)
+            print("Row-Echelon Matrix looks like:")
+            printMatrix(rowEchelon(matrix,False))
+            print("")
     else:
         print("Error in main(): This line should not have been executed")
         return None
