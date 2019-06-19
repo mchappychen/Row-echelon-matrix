@@ -132,7 +132,8 @@ def main():
                     except ValueError:
                         print("Type in a number idiot, learn to read") 
             matrix.append(row)
-        checkMatrix(matrix)
+        if(not checkMatrix(matrix)):
+            return None
         print("\nMatrix looks like:")
         printMatrix(matrix)
         print("")
